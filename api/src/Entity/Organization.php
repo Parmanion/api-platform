@@ -46,18 +46,29 @@ class Organization
      *
      * @see http://schema.org/legalName
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", nullable=false, length=50)
      * @ApiProperty(iri="http://schema.org/legalName")
      * @Assert\Type(type="string")
      */
     private ?string $legalName = null;
 
     /**
+     * The name of the item.
+     *
+     * @see http://schema.org/name
+     *
+     * @ORM\Column(type="string", nullable=false, length=50)
+     * @ApiProperty(iri="http://schema.org/name")
+     * @Assert\Type(type="string")
+     */
+    private ?string $name = null;
+
+    /**
      * An associated logo.
      *
      * @see http://schema.org/logo
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", nullable=false, length=255)
      * @ApiProperty(iri="http://schema.org/logo")
      * @Assert\Url
      */
@@ -68,7 +79,7 @@ class Organization
      *
      * @see http://schema.org/leiCode
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", nullable=true, length=50)
      * @ApiProperty(iri="http://schema.org/leiCode")
      * @Assert\Type(type="string")
      */
@@ -92,7 +103,7 @@ class Organization
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="memberOf")
      * @ApiProperty(iri="http://schema.org/member")
      */
-    private ?User $member = null;
+    private ?Collection $member = null;
 
     public function __construct()
     {
@@ -154,8 +165,19 @@ class Organization
         $this->member = $member;
     }
 
-    public function getMember(): ?User
+    public function getMember(): ?Collection
     {
         return $this->member;
     }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
+    }
+
 }

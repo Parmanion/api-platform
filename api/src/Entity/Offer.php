@@ -64,9 +64,9 @@ class Offer
      *
      * @see http://schema.org/price
      *
-     * @ORM\Column(type="decimal", precision=5, scale=1, options={"comment" = "price of offers"})
+     * @ORM\Column(type="integer", options={"comment" = "price of offers"})
      * @ApiProperty(iri="http://schema.org/price")
-     * @Assert\Type(type="string")
+     * @Assert\Type(type="int")
      */
     private ?string $price = null;
 

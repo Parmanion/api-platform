@@ -50,11 +50,22 @@ class Rating
     private ?string $ratingValue = null;
 
     /**
+     * A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using ClaimReview.
+     *
+     * @see http://schema.org/ratingExplanation
+     *
+     * @ORM\Column(type="text", nullable=true)
+     * @ApiProperty(iri="http://schema.org/ratingExplanation")
+     * @Assert\Type(type="string")
+     */
+    private ?string $ratingExplanation = null;
+
+    /**
      * The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.
      *
      * @see http://schema.org/author
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ApiProperty(iri="http://schema.org/author")
      */
     private ?User $author = null;
@@ -83,4 +94,15 @@ class Rating
     {
         return $this->author;
     }
+
+    public function getRatingExplanation(): ?string
+    {
+        return $this->ratingExplanation;
+    }
+
+    public function setRatingExplanation(?string $ratingExplanation): void
+    {
+        $this->ratingExplanation = $ratingExplanation;
+    }
+
 }

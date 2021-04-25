@@ -32,6 +32,7 @@
     },
     "require-dev": {
         "api-platform/schema-generator": "^3.0",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^0.12.84",
         "phpstan/phpstan-doctrine": "^0.12.33",

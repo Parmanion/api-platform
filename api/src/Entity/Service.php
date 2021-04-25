@@ -60,6 +60,28 @@ class Service
      */
     private ?Organization $provider = null;
 
+    /**
+     * The name of the item.
+     *
+     * @see http://schema.org/name
+     *
+     * @ORM\Column(type="string", nullable=false, length=50)
+     * @ApiProperty(iri="http://schema.org/name")
+     * @Assert\Type(type="string")
+     */
+    private ?string $name = null;
+
+    /**
+     * A description of the item.
+     *
+     * @see http://schema.org/description
+     *
+     * @ORM\Column(type="text", nullable=false)
+     * @ApiProperty(iri="http://schema.org/description")
+     * @Assert\Type(type="string")
+     */
+    private ?string $description = null;
+
     public function __construct()
     {
         $this->offers = new ArrayCollection();
@@ -93,5 +115,25 @@ class Service
     public function getProvider(): ?Organization
     {
         return $this->provider;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
     }
 }
