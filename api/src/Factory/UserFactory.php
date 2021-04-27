@@ -42,6 +42,7 @@ final class UserFactory extends ModelFactory
             'gender' => $gender,
             'email' => self::faker()->unique()->safeEmail(),
             'telephone' => self::faker()->phoneNumber(),
+            'memberOf' => null,
             'roles' => ['ROLE_USER'],
             'password' => 'foo',
         ];

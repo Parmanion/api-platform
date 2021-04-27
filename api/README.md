@@ -21,3 +21,9 @@ docker-compose exec php bin/console doctrine:migrations:migrate
 ```shell
 docker-compose exec php bin/console doc:sch:up -f
 ```
+```shell
+docker-compose exec php bin/console doctrine:fixtures:load -n
+```
+```postgresql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+```
