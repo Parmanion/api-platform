@@ -45,14 +45,20 @@ class AppFixtures extends Fixture
             ];
         });
 
-//        OfferFactory::createMany(20, [
-//            'itemOffered' => ServiceFactory::random(),
-//            'offeredBy' => ServiceFactory::random()->getProvider(),
-//        ]);
-//
-//        RatingFactory::createMany(50, [
-//            'author' => UserFactory::random(),
-////            'subjectOf' => ServiceFactory::random(),
-//        ]);
+        OfferFactory::createMany(20, function() {
+            $service = ServiceFactory::random();
+            return [
+                'itemOffered' => $service,
+                'offeredBy' => $service->getProvider(),
+            ];
+        });
+
+        RatingFactory::createMany(50, function() {
+            $user = UserFactory::random(['memberOf' => null]);
+            return [
+                'author' => $user,
+//                'subjectOf' => ServiceFactory::random(),
+            ];
+        });
     }
 }
