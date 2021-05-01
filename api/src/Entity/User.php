@@ -95,7 +95,7 @@ class User implements UserInterface
      *
      * @see http://schema.org/givenName
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      * @ApiProperty(iri="http://schema.org/givenName")
      * @Assert\Type(type="string")
      * @Groups({"public"})
@@ -103,11 +103,23 @@ class User implements UserInterface
     private ?string $givenName = null;
 
     /**
+     * An image of the item. This can be a URL or a fully described ImageObject.
+     *
+     * @see http://schema.org/image
+     *
+     * @ORM\Column(type="string", nullable=true)
+     * @ApiProperty(iri="http://schema.org/image")
+     * @Assert\Type(type="string")
+     * @Groups({"public"})
+     */
+    private ?string $image = null;
+
+    /**
      * The telephone number.
      *
      * @see http://schema.org/telephone
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      * @ApiProperty(iri="http://schema.org/telephone")
      * @Assert\Type(type="string")
      */
@@ -251,4 +263,15 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
+    }
+
 }

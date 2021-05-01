@@ -37,14 +37,15 @@ final class UserFactory extends ModelFactory
     {
         $gender = self::faker()->randomElement(['male', 'female']);
         return [
-            'givenName' => self::faker()->firstName($gender),
-            'familyName' => self::faker()->lastName(),
-            'gender' => $gender,
             'email' => self::faker()->unique()->safeEmail(),
-            'telephone' => self::faker()->phoneNumber(),
+            'familyName' => self::faker()->lastName(),
+            'image' => self::faker()->imageUrl(360, 360, null,true),
+            'gender' => $gender,
+            'givenName' => self::faker()->firstName($gender),
             'memberOf' => null,
-            'roles' => ['ROLE_USER'],
             'password' => 'foo',
+            'roles' => ['ROLE_USER'],
+            'telephone' => self::faker()->phoneNumber(),
         ];
     }
 
