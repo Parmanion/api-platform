@@ -31,7 +31,6 @@ final class RatingFactory extends ModelFactory
             'ratingExplanation' => self::faker()->boolean(70)?
                 self::faker()->paragraphs(self::faker()->numberBetween(1,3), true) : null,
             'ratingValue' => self::faker()->numberBetween(1,5),
-//            'subjectOf' => ServiceFactory::new()
         ];
     }
 

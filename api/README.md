@@ -15,11 +15,9 @@ sudo chown -R pierre:pierre api/src/ && sudo chmod -R 774 api/src/ && ls -lh api
 ```shell
 docker-compose exec php bin/console doctrine:database:drop --force; \
 docker-compose exec php bin/console doctrine:database:create; \
-docker-compose exec php bin/console doctrine:schema:create; \
-docker-compose exec php bin/console doctrine:migrations:migrate
-```
-```shell
 docker-compose exec php bin/console doc:sch:up -f
+#docker-compose exec php bin/console doctrine:schema:create; \
+#docker-compose exec php bin/console doctrine:migrations:migrate
 ```
 ```shell
 docker-compose exec php bin/console doctrine:fixtures:load -n

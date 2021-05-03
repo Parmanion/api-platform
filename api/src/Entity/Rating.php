@@ -15,7 +15,10 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -46,9 +49,9 @@ class Rating
      *
      * @see http://schema.org/ratingValue
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="smallint", nullable=false, length=1)
      * @ApiProperty(iri="http://schema.org/ratingValue")
-     * @Assert\Type(type="string")
+     * @Assert\Type(type="int")
      */
     private ?string $ratingValue = null;
 
@@ -106,6 +109,16 @@ class Rating
     public function setRatingExplanation(?string $ratingExplanation): void
     {
         $this->ratingExplanation = $ratingExplanation;
+    }
+
+    public function getSubjectOf(): ?Service
+    {
+        return $this->subjectOf;
+    }
+
+    public function setSubjectOf(?Service $subjectOf): void
+    {
+        $this->subjectOf = $subjectOf;
     }
 
 }

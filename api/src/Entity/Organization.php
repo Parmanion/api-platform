@@ -110,6 +110,7 @@ class Organization
     public function __construct()
     {
         $this->makesOffer = new ArrayCollection();
+        $this->member = new ArrayCollection();
     }
 
     public function getId(): ?string

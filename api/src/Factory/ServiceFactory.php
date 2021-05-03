@@ -31,7 +31,8 @@ final class ServiceFactory extends ModelFactory
         return [
             'name' => self::faker()->realText(50),
             'description' => self::faker()->paragraphs(self::faker()->numberBetween(2,4), true),
-            'provider' => OrganizationFactory::new()
+            'provider' => OrganizationFactory::new(),
+            'ratings' => null,
         ];
     }
 

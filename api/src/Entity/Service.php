@@ -18,6 +18,8 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -85,9 +87,19 @@ class Service
      */
     private ?string $description = null;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Rating")
+     * @JoinTable(name="services_ratings",
+     *      joinColumns={@JoinColumn(name="service_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="rating_id", referencedColumnName="id", unique=true)}
+     *      )
+     */
+    private $ratings = null;
+
     public function __construct()
     {
         $this->offers = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -139,4 +151,15 @@ class Service
     {
         $this->description = $description;
     }
+
+    public function getRatings(): ?ArrayCollection
+    {
+        return $this->ratings;
+    }
+
+    public function setRatings(Collection|array $ratings): void
+    {
+        $this->ratings = $ratings;
+    }
+
 }
